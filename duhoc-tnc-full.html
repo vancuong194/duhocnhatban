@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trung Tâm Du Học Nhật Bản T&C</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; }
+    .floating-buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .floating-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background-color: #16a34a;
+      color: white;
+      font-size: 24px;
+      transition: background-color 0.3s;
+      animation: shake 1.5s infinite;
+    }
+    .floating-buttons a.zalo { background-color: #0068ff; }
+    .floating-buttons a:hover { opacity: 0.9; }
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0, 0); }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <script>AOS.init();</script>
+
+  <!-- Gallery Carousel -->
+  <section id="gallery" class="py-16 bg-gray-50" data-aos="fade-up">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h3 class="text-3xl font-semibold mb-8" data-aos="fade-up">Hình ảnh Trung Tâm & Học Viên</h3>
+      <div class="relative overflow-hidden rounded-lg w-full h-60">
+        <div id="carousel-track" class="flex w-[400%] transition-transform duration-700">
+          <img src="https://drive.google.com/uc?id=1V-u2ZZVH73LZ76HLaFhJHeJYK5jo0xRe" class="w-full h-60 object-cover flex-shrink-0" alt="Học viên 1">
+          <img src="https://drive.google.com/uc?id=1ITJxB8IzEfhVPDXxZzuYtrTu-w70UqpL" class="w-full h-60 object-cover flex-shrink-0" alt="Học viên 2">
+          <img src="https://drive.google.com/uc?id=1q0CYiwtdFdJIIJAwX1fALn0-c3Mb0BXE" class="w-full h-60 object-cover flex-shrink-0" alt="Học viên 3">
+          <img src="https://drive.google.com/uc?id=10YbkNTqSm5Uipy7_ueROwEQ3l1q4p2Ix" class="w-full h-60 object-cover flex-shrink-0" alt="Học viên 4">
+        </div>
+        <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-gray-800 px-3 py-2 rounded-l z-10">◀</button>
+        <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-gray-800 px-3 py-2 rounded-r z-10">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    let index = 0;
+    const track = document.getElementById('carousel-track');
+    const total = track.children.length;
+    setInterval(() => {
+      index = (index + 1) % total;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }, 3000);
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + total) % total;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    });
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % total;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    });
+  </script>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <a href="tel:0388731093" title="Gọi ngay">📞</a>
+    <a href="https://zalo.me/0388731093" target="_blank" class="zalo" title="Chat Zalo">💬</a>
+  </div>
+
+  <!-- Background Music -->
+  <audio autoplay loop hidden id="bg-music">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_c80e1052a6.mp3?filename=gentle-inspiration-124216.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Confetti -->
+  <script>
+    setInterval(() => {
+      confetti({
+        particleCount: 3,
+        spread: 60,
+        origin: { y: 0.9 },
+        colors: ['#ff595e', '#ffca3a', '#8ac926']
+      });
+    }, 1000);
+  </script>
+
+  <!-- Lottie Animation -->
+  <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_lk80fpsm.json"
+    background="transparent" speed="1"
+    style="width: 80px; height: 80px; position: fixed; bottom: 90px; right: 20px; z-index: 100;"
+    loop autoplay></lottie-player>
+
+  <!-- Popup Khuyến Mãi -->
+  <div id="promoPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-xl p-6 max-w-md text-center relative animate__animated animate__zoomIn">
+      <button onclick="document.getElementById('promoPopup').classList.add('hidden')" class="absolute top-2 right-2 text-gray-600 hover:text-red-600">✖</button>
+      <h3 class="text-2xl font-bold text-red-600 mb-4">🎉 Ưu Đãi Tuyển Sinh!</h3>
+      <p class="text-gray-700 mb-4">Đăng ký ngay hôm nay để nhận <strong>ưu đãi học phí</strong> & <strong>tư vấn miễn phí</strong> 1:1 từ chuyên gia.</p>
+      <a href="#form" class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Đăng ký ngay</a>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('promoPopup').classList.remove('hidden');
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
